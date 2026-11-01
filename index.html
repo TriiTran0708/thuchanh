@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập · Aqua Glass</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scene" aria-hidden="true">
+  <div class="cloud c1"></div><div class="cloud c2"></div>
+  <i class="bubble" style="--s:120px;--x:8%;--y:55%;--d:7s"></i>
+  <i class="bubble" style="--s:70px;--x:82%;--y:62%;--d:5s"></i>
+  <i class="bubble" style="--s:46px;--x:20%;--y:18%;--d:6s"></i>
+  <i class="bubble" style="--s:90px;--x:74%;--y:12%;--d:8s"></i>
+  <i class="bubble" style="--s:30px;--x:60%;--y:80%;--d:4.5s"></i>
+  <div class="hill h2"></div><div class="hill h1"></div>
+</div>
+
+<main class="glass">
+  <!-- Màn hình đăng nhập / đăng ký -->
+  <section id="authView">
+    <h1 id="title">Chào mừng trở lại</h1>
+    <p class="sub" id="subtitle">Đăng nhập để tiếp tục</p>
+
+    <div class="tabs" id="tabs" data-mode="login" role="tablist">
+      <span class="pill"></span>
+      <button class="tab" role="tab" id="tabLogin" aria-selected="true" type="button">Đăng nhập</button>
+      <button class="tab" role="tab" id="tabSignup" aria-selected="false" type="button">Đăng ký</button>
+    </div>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="input"><input id="email" type="email" autocomplete="email" placeholder="ban@vidu.com"></div>
+        <p class="hint" id="emailErr"></p>
+      </div>
+      <div class="field">
+        <label for="password">Mật khẩu</label>
+        <div class="input">
+          <input id="password" type="password" autocomplete="current-password" placeholder="Ít nhất 6 ký tự">
+          <button class="eye" type="button" aria-label="Hiện mật khẩu" aria-pressed="false" data-target="password">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg>
+          </button>
+        </div>
+        <p class="hint" id="passwordErr"></p>
+      </div>
+      <div class="field" id="confirmField" hidden>
+        <label for="confirm">Nhập lại mật khẩu</label>
+        <div class="input">
+          <input id="confirm" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu">
+          <button class="eye" type="button" aria-label="Hiện mật khẩu" aria-pressed="false" data-target="confirm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg>
+          </button>
+        </div>
+        <p class="hint" id="confirmErr"></p>
+      </div>
+      <button class="btn" id="submitBtn" type="submit"><span>Đăng nhập</span></button>
+    </form>
+
+    <div class="or">hoặc</div>
+    <button class="btn ghost" id="googleBtn" type="button"><span>
+      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.800 2.400 30.300 0 24 0 14.600 0 6.500 5.400 2.600 13.200l7.900 6.100C12.400 13.600 17.700 9.500 24 9.500z"/><path fill="#4285F4" d="M46.500 24.500c0-1.600-.1-3.100-.4-4.500H24v9h12.700c-.6 3-2.300 5.500-4.800 7.200l7.600 5.900c4.400-4.100 7-10.100 7-17.600z"/><path fill="#FBBC05" d="M10.500 28.700c-.5-1.400-.8-3-.8-4.700s.3-3.200.8-4.700l-7.900-6.100C.9 16.500 0 20.100 0 24s.9 7.500 2.600 10.800l7.900-6.100z"/><path fill="#34A853" d="M24 48c6.500 0 11.900-2.100 15.900-5.800l-7.600-5.900c-2.100 1.400-4.900 2.300-8.300 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/></svg>
+      Tiếp tục với Google</span></button>
+
+    <div class="msg info" id="msg" role="status" aria-live="polite" hidden></div>
+  </section>
+
+  <!-- Bonus: hiển thị thông tin người dùng sau khi đăng nhập -->
+  <section id="welcomeView" class="welcome" hidden>
+    <div class="avatar"><b id="avatarLetter">A</b></div>
+    <h1>Xin chào!</h1>
+    <p class="sub">Bạn đã đăng nhập bằng tài khoản</p>
+    <p class="who" id="userEmail"></p>
+    <div class="msg success" style="margin:0 0 16px">Đăng nhập thành công</div>
+    <button class="btn" id="logoutBtn" type="button"><span>Đăng xuất</span></button>
+  </section>
+</main>
+
+<!-- Nhúng Supabase SDK bằng thẻ script -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
